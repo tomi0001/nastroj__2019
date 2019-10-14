@@ -22,7 +22,7 @@ class ControllerMood extends BaseController
             }
             else {
                 $Mood->addMood();
-                return View("Ajax.succes")->with("succes","Poprawnie dodano nastrój");
+                return View("Ajax.succes")->with("succes","Poprawnie dodano nastrój data" );
             }
         }
     }

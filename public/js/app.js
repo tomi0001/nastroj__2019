@@ -71,9 +71,24 @@ function editMoodAction(url,id,i) {
     //alert(i);
     $("#viewEditMood"+i).load(url + "?id=" + id + "&levelMood=" + levelMood + "&levelAnxiety=" + levelAnxiety + "&levelNervousness=" + levelNervousness + "&levelStimulation=" + levelStimulation);
 }
+
+function getDiv() {
+    alert("dob");
+    /*
+        
+  */
+}
 function addMood(url) {
-    
+    //if ()
+
     $("#addResult").load(url  + "?" +  $( "form" ).serialize());
+    if ($("#addResult").text() != "") {
+    //$("#addResult").hide("slow"); 
+    }
+    //else {
+      //  $("#addResult").text()  = "";
+    //}
+   
 }
 function addSleep(url) {
     $("#addResultSleep").load(url + "?" + $("form").serialize());

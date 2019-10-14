@@ -61,4 +61,30 @@ class ControllerUser extends BaseController
             return View("/User/Setting")->with("startDay",Auth::User()->start_day);
         }
     }
+    public function changeHour() {
+        $User = new User;
+        if ( (Auth::check()) ) {
+            $User->checHour();
+            if (count($User->errors) != 0 ) {
+                return Redirect('/User/Setting')->with("error",$User->errors);
+            }
+            else {
+                $User->changeHour();
+                return Redirect('/User/Setting')->with("succes","Pomyslnie zmodyfikowano dane");
+            }
+        }
+    }
+    public function changePassword() {
+        $User = new User;
+        if ( (Auth::check()) ) {
+            $User->checkPasswordForm();
+            if (count($User->errors) != 0 ) {
+                return Redirect('/User/Setting')->with("error",$User->errors);
+            }
+            else {
+                $User->updatePassword(Input::get("passwordNew"));
+                return Redirect('/User/Setting')->with("succes","Pomyslnie zmodyfikowano dane");
+            }
+        }
+    }
 }

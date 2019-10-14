@@ -36,6 +36,32 @@ class User {
        
        
    }
+   public function checkPasswordForm() {
+       if (strlen(Input::get("passwordNew")) < 5 or strlen(Input::get("passwordNewConfirm")) < 5) {
+           array_push($this->errors, "Hasła muszą mieć minimum 5 znaków długości");
+       }
+       if (!Hash::check(Input::get("password"), Auth::User()->password)) {
+            array_push($this->errors, "Wpisałęś stare złe hasło");
+        }
+       if (Input::get("passwordNew") != Input::get("passwordNewConfirm")) {
+           array_push($this->errors, "Podane hasła się różnią");
+       }
+   }
+   public function updatePassword($password) {
+         $Users = new Users;
+         $Users->where("id",Auth::User()->id)
+                ->update(['password'=>Hash::make($password)]);
+   }
+   private function checkIsGoodPassword($password) {
+       $User = new Users;
+       $is = $User->where("password",Hash::make($password))->count();
+       if ($is > 0) {
+           return true;
+       }
+       else {
+           return false;
+       }
+   }
    private function checkPassword($password,$password_confirm) {
        if (strlen($password) < 5) {
            array_push($this->errors, "Podane hasło musi mieć minumum 5 znaków");
@@ -50,5 +76,16 @@ class User {
        $Users->password = Hash::make(Input::get("password"));
        $Users->start_day = Input::get("start_day");
        $Users->save();
+   }
+   public function changeHour() {
+       $Users = new Users;
+       $Users->where("id",Auth::User()->id)
+                ->update(['start_day'=>Input::get("hourStart")]);
+   }
+   public function checHour() {
+       
+       if (Input::get("hourStart") < 0  or Input::get("hourStart") > 23) {
+              array_push($this->errors, "Podana liczba musi być w przedziale od 0 do 23");
+       }
    }
 }

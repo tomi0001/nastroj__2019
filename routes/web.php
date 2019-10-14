@@ -18,6 +18,8 @@ Route::post('/User/Login_action', "ControllerUser@login_action");
 Route::get('/User/Login', "ControllerUser@login");
 Route::get('/User/Logout', "ControllerUser@logout_action");
 Route::get('/User/Setting', "ControllerUser@Setting");
+Route::get('/User/changeHour', "ControllerUser@changeHour");
+Route::post('/User/changePassword', "ControllerUser@changePassword");
 
 Route::get('/Main/{year?}/{month?}/{day?}/{action?}', "ControllerMain@main");
 

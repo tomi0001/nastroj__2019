@@ -1,7 +1,8 @@
 @extends('Layout.Main')
 @section('content')
 <div class="setting">
-    <form>
+    <div id="login">
+    <form action="{{ url('/User/changePassword')}}" method="post">
 <table class="table">
     <tr>
         <td colspan="2" class="center">
@@ -13,7 +14,7 @@
             Twoje hasło
         </td>
         <td>
-           <input type="password" id="password" class="form-control">
+           <input type="password" name="password" class="form-control" required>
         </td>
         
         
@@ -23,7 +24,7 @@
             Wpisz nowe hasło
         </td>
         <td>
-           <input type="password" id="passwordNew" class="form-control">
+           <input type="password" name="passwordNew" class="form-control" required>
         </td>
         
         
@@ -33,11 +34,12 @@
             Wpisz jeszcze raz nowe hasło
         </td>
         <td>
-           <input type="password" id="passwordNewConfirm" class="form-control">
+           <input type="password" name="passwordNewConfirm" class="form-control" required>
         </td>
         
         
     </tr>
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <tr>
         <td colspan="2" class="center">
            <input type="submit"  class="btn btn-primary" value="zmień">
@@ -45,6 +47,7 @@
         
         
     </tr>   
+    </form>
     <tr>
         <td colspan="2" class="center">
             ZMIANA GODZINY DNIA
@@ -54,8 +57,9 @@
         <td>
             Godzina dnia
         </td>
+          <form action="{{ url('/User/changeHour')}}" method="get">
         <td>
-           <input type="number" id="hourStart" class="form-control" value="{{$startDay}}">
+                <input type="number" id="hourStart" name="hourStart" class="form-control" value="{{$startDay}}" required>
         </td>
         
         
@@ -69,5 +73,18 @@
     </tr>
 </table>
     </form>
+</div>
+    <div id="succes">
+        @if (session('succes') )
+            {{session('succes')}}
+        @endif
+    </div>
+    <div id="error">
+        @if (session('error') )
+            @for($i=0;$i < count(session('error'));$i++)
+            {{session('error')[$i]}}<br>
+            @endfor
+        @endif
+    </div>
 </div>
 @endsection

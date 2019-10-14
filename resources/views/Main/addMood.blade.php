@@ -117,6 +117,5 @@
             
         </div>
     </form>
-    <div class="center " id="addResult">
-    </div>
+    <div class="center " id="addResult"></div>
 </div>
