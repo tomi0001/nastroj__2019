@@ -7,7 +7,7 @@
             Poziom nastroju
         </td>
         <td>
-            <input type="text" id="levelMood" class="form-control" value="{{$list->level_mood}}">
+            <input type="text" id="levelMood_{{$list->id}}" class="form-control" value="{{$list->level_mood}}">
         </td>
     </tr>
     <tr>
@@ -15,7 +15,7 @@
             Poziom lęku
         </td>
         <td>
-            <input type="text" id="levelAnxiety" class="form-control" value="{{$list->level_anxiety}}">
+            <input type="text" id="levelAnxiety_{{$list->id}}" class="form-control" value="{{$list->level_anxiety}}">
         </td>
     </tr>
     <tr>
@@ -23,7 +23,7 @@
             Poziom zdenerwowania
         </td>
         <td>
-            <input type="text" id="levelNervousness" class="form-control" value="{{$list->level_nervousness}}">
+            <input type="text" id="levelNervousness_{{$list->id}}" class="form-control" value="{{$list->level_nervousness}}">
         </td>
     </tr>
     <tr>
@@ -31,7 +31,7 @@
             Poziom pobudzenia
         </td>
         <td>
-            <input type="text" id="levelStimulation" class="form-control" value="{{$list->level_stimulation}}">
+            <input type="text" id="levelStimulation_{{$list->id}}" class="form-control" value="{{$list->level_stimulation}}">
         </td>
     </tr>
     <tr>

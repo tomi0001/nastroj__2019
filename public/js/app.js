@@ -64,10 +64,10 @@ function deleteDrugsId(url,id) {
     }
 }
 function editMoodAction(url,id,i) {
-    var levelMood = $("#levelMood").val();
-    var levelAnxiety = $("#levelAnxiety").val();
-    var levelNervousness = $("#levelNervousness").val();
-    var levelStimulation = $("#levelStimulation").val();
+    var levelMood = $("#levelMood_" + id).val();
+    var levelAnxiety = $("#levelAnxiety_"+  id).val();
+    var levelNervousness = $("#levelNervousness_" + id).val();
+    var levelStimulation = $("#levelStimulation_" + id).val();
     //alert(i);
     $("#viewEditMood"+i).load(url + "?id=" + id + "&levelMood=" + levelMood + "&levelAnxiety=" + levelAnxiety + "&levelNervousness=" + levelNervousness + "&levelStimulation=" + levelStimulation);
 }

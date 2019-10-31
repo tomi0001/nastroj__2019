@@ -157,15 +157,15 @@ class AIMood extends mood {
                 $dateComparate1 = $divi1[0] . " " . $hourStart . ":00:00";
                 $dateComparate2 = $divi2[0] . " " . $hourEnd . ":00:00";
                 $sumHour = (((($hourEnd) - ($hourStart)) *3600 )+ 3600);
-
-            if ($time1 < $dateComparate1) {
-                $div = $dateComparate1;
+                //print strtotime($dateComparate1) . "<br>";
+            if ($time1 < strtotime($dateComparate1)) {
+                $div = strtotime($dateComparate1);
             }
             else {
                 $div = $time1;
             }
-            if ($time2 < $dateComparate2) {
-                $div2 = $dateComparate2;
+            if ($time2 > strtotime($dateComparate2)) {
+                $div2 = strtotime($dateComparate2);
             }
             else {
                 $div2 = $time2;
@@ -206,7 +206,9 @@ class AIMood extends mood {
 
 
          
-          
+          if ($second == 0) {
+              return 0;
+          }
          
 
         if ($type == "mood") {
@@ -225,7 +227,7 @@ class AIMood extends mood {
     }
  
     
-    public function sortMood($list) {
+    public function sortMoodOld($list) {
 
         $sort = $list;
         if (count($sort) % 2 == 1) {
@@ -252,6 +254,23 @@ class AIMood extends mood {
         }      
         return ((($tmp2 / count($sort)) * 5));
         
+    }
+    
+    public function sortMood($list) {
+        
+        $tmp = 0;
+        $tmp2 = 0;       
+        for ($i=0;$i < count($list)-1;$i++) {
+            //if (count($list)-1 == $i) {
+                //break;
+            //}
+            $tmp = $list[$i] - $list[$i+1];
+            if ($tmp < 0) {
+                $tmp = -$tmp;
+            }
+            $tmp2 += $tmp;
+        }
+        return ((($tmp2 / count($list)) * 5));
     }
 
 }
