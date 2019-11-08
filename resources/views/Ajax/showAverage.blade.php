@@ -3,7 +3,7 @@
       @if ($day == "on")
       <tr>
             <td style="width: 18%;">
-                Data
+                Data <br>{{$hour}}
             </td>
             <td>
                 Poziom nastroju
@@ -69,7 +69,7 @@
       @else
       <tr>
             <td style="width: 18%;">
-                Data
+                Data <br>{{$hour}}
             </td>
             <td>
                 Poziom nastroju

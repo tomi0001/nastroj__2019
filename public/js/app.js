@@ -147,7 +147,17 @@ function editDescription(url,id) {
 
 function searchAI(url) {
     
-    $("#AI").load(url + "?" + $("form").serialize());
+var response;
+$.ajax({ type: "GET",   
+     url: url + "?" + $("form").serialize(),   
+     async: false,
+     success : function(text)
+     {
+         response= text;
+     }
+});
+    //$("#AI").load(url + "?" + $("form").serialize()).append();
+    $("#AI").prepend(response);
 }
 
 function changeMood() {

@@ -164,7 +164,7 @@ class AIMood extends mood {
             else {
                 $div = $time1;
             }
-            if ($time2 > strtotime($dateComparate2)) {
+            if ($time2 < strtotime($dateComparate2)) {
                 $div2 = strtotime($dateComparate2);
             }
             else {

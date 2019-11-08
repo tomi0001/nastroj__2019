@@ -81,7 +81,7 @@ class ControllerSearch extends BaseController
             //var_dump($a);
             return View("Ajax.showAverage")->with("days",$AI->days)->with("list",$list)
                    ->with("day",Input::get("day"))->with("harmonyMood",$AI->tableMood)->with("harmonyAnxiety",$AI->tableAnxiety)
-                    ->with("harmonyNer",$AI->tableNer)->with("harmonyStimu",$AI->tableStimu);
+                    ->with("harmonyNer",$AI->tableNer)->with("harmonyStimu",$AI->tableStimu)->with("hour","Godzina od " . Input::get("hourFrom") . " do "  .  Input::get("hourTo"));
         }
     }
 }
