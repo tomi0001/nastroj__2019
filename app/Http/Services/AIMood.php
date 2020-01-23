@@ -73,13 +73,13 @@ class AIMood extends mood {
                 return 0;
             }
             return [round($sumMood / $j,2),
-                round($this->sortMood((($days[0]) )) ,2)
+                round($this->standardDeviation((($days[0]) )) ,2)
                 ,round($sumAnxiety / $j,2)
-                ,round($this->sortMood((($days[1]) )),2)
+                ,round($this->standardDeviation((($days[1]) )),2)
                 ,round($sumNer / $j,2)
-                ,round($this->sortMood((($days[2]) )),2)
+                ,round($this->standardDeviation((($days[2]) )),2)
                 ,round($sumStimu / $j,2)
-                ,round($this->sortMood((($days[3]) )),2)];
+                ,round($this->standardDeviation((($days[3]) )),2)];
             
         }
         
@@ -192,16 +192,16 @@ class AIMood extends mood {
             //return 200;
         }
                  if ($type == "anxiety") {
-        array_push($this->tableAnxiety,round(($this->sortMood($harmonyAnxiety) ),2));
+        array_push($this->tableAnxiety,round(($this->standardDeviation($harmonyAnxiety) ),2));
          }
          else if ($type=="ner") {
-        array_push($this->tableNer,round(($this->sortMood($harmonyNer) ),2));
+        array_push($this->tableNer,round(($this->standardDeviation($harmonyNer) ),2));
          }
          else if ($type=="stimulation") {
-        array_push($this->tableStimu,round(($this->sortMood($harmonyStimu) ),2));
+        array_push($this->tableStimu,round(($this->standardDeviation($harmonyStimu) ),2));
          }
          else {
-        array_push($this->tableMood,round(($this->sortMood($harmonyMood) ),2));
+        array_push($this->tableMood,round(($this->standardDeviation($harmonyMood) ),2));
         }
 
 
@@ -264,13 +264,54 @@ class AIMood extends mood {
             //if (count($list)-1 == $i) {
                 //break;
             //}
-            $tmp = $list[$i] - $list[$i+1];
+            
+            //if ($list[$i+1] == 0) {
+                //$tmp  =100;
+            //}
+             
+            //else {
+           
+                $tmp = ((((($list[$i]) ) / 20)  * 100) -  ((($list[$i+1] ) / 20) * 100 ));
+            //}
             if ($tmp < 0) {
                 $tmp = -$tmp;
             }
             $tmp2 += $tmp;
         }
-        return ((($tmp2 / count($list)) * 5));
+        $average = array_sum($list)/count($list);
+        if ($average == 0) {
+            $average = 0.5;
+        }
+        return  abs(((($tmp2 / count($list))) ) / $average);
     }
+    
+    public function standardDeviation($list) {
+                    //$tablica = [0.2,0.1,0.1,0.1,0.1,0.1,0.2,0.2];
+            $n=count($list);
+            $average=0;
+
+            for($i=0;$i<$n;$i++)
+            {
+                $average += $list[$i];
+            }
+
+            $average /= $n;
+
+            for($i=0;$i<$n;$i++)
+            {
+                $standardDeviation=$list[$i]-$average; // tutaj do zmiennej $wyraz_srednia przypisujesz roznice danej liczby i sredniej wszystkich liczb
+
+                $list2[$i]= $standardDeviation * $standardDeviation;
+            }
+            $result = 0;
+            for($i=0;$i<$n;$i++)
+            {
+                $result+=$list2[$i]; //dostajesz sume tych wszystkich kwadratow roznicy wyrazu i sredniej;
+            }
+            return sqrt($result);
+            //print $wynik;
+    }
+            
+            
 
 }

@@ -17,6 +17,9 @@ class ControllerMain extends BaseController
 
         if ( (Auth::check()) ) {
 
+            
+            
+
             $kalendar = new Calendar();
             $Moods = new Mood;
             $AIMood = new AI;

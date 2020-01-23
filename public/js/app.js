@@ -159,7 +159,13 @@ $.ajax({ type: "GET",
     //$("#AI").load(url + "?" + $("form").serialize()).append();
     $("#AI").prepend(response);
 }
-
+function deleteWorld() {
+    $(".t").remove();
+    //alert("ss");
+}
+function addWorld() {
+    //$("#what_work").append("<tr><td class='center'><input type='text' name='what_work3[]' class='form-control typeMood'></td></tr>");
+}
 function changeMood() {
     if ($("#type").val() == "sleep") {
         $("#sort").html("<option value='date'>Według daty</option><option value='hour'>Według Godziny</option><option value='longMood'>Według długości trwania snu</option>")

@@ -203,6 +203,7 @@
                 ->appends(['drugs'=>Input::get("drugs")])
                 ->appends(['moodForDay'=>Input::get("moodForDay")])
                 ->appends(['type'=>Input::get("type")])
+                ->appends(['ifText'=>Input::get("ifText")])
         
                 ->links()}}
             </td>

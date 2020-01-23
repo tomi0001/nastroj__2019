@@ -188,10 +188,64 @@
                 Słowa kluczowe co robiłem
                 
             </td>
+            
             <td class="center">
-                <input type="text" name="what_work" class="form-control typeMood">
+                <table id="what_work" width="100%">
+                   
+                    <tr>
+                        
+                        <td>
+                <input type="text" name="what_work3[]" class="form-control typeMood">
+                    </td>
+                           <td>
+                 <a onclick="addWorld()" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-plus"></span>  
+        </a>
+            </td>
+          
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                <input type="text" name="what_work3[]" class="form-control typeMood">
+                    </td>
+                           <td>
+                 <a onclick="addWorld()" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-plus"></span>  
+        </a>
+            </td>
+          
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                <input type="text" name="what_work3[]" class="form-control typeMood">
+                    </td>
+                           <td>
+                 <a onclick="addWorld()" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-plus"></span>  
+        </a>
+            </td>
+          
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                <input type="text" name="what_work3[]" class="form-control typeMood">
+                    </td>
+                           <td>
+                 <a onclick="addWorld()" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-plus"></span>  
+        </a>
+            </td>
+          
+                    </tr>
+                </table>
                 
             </td>
+            
+            
+     
         </tr>
         <tr>
             <td class="center">

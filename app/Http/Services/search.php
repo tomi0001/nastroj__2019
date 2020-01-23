@@ -151,6 +151,9 @@ class search  {
         if (Input::get("drugs") != "") {
             $this->qestion->leftjoin("drugs","drugs.id","forwarding_drugs.id_drugs");
         }
+        //if (count()) {
+            $this->setWhatWotk();
+        //}
         $this->qestion->where("moods.id_users",Auth::User()->id);
         if (Input::get("moodForDay") != "") {
             $this->setGroup();
@@ -297,6 +300,20 @@ class search  {
 
         
     }
+    private function setWhatWotk() {
+        //var_dump(Input::get("what_work3"));
+        $Common = new Common;
+        
+        for ($i=0;$i < count(Input::get("what_work3"));$i++) {
+            
+            if (Input::get("what_work3")[$i] != "") {
+                
+                $stringSearch = $Common->charset_utf_fix2(Input::get("what_work3")[$i]);
+                $this->qestion->where("what_work","LIKE","%" . $stringSearch . "%");
+            }
+        }
+        
+    }
     private function setWhere() {
         $Common = new Common;
         $second = $this->setHour();
@@ -325,9 +342,12 @@ class search  {
         if (Input::get("stimulationTo") != "") {
             $this->qestion->where("level_stimulation","<=",Input::get("stimulationTo"));
         }
+        /*
         if (Input::get("what_work") != "") {
             $this->qestion->where("what_work","LIKE","%" . $stringSearch . "%");
         }
+         * 
+         */
         if (Input::get("ifText") == "on") {
             $this->qestion->where("what_work","!=","");
         }
