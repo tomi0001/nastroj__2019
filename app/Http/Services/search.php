@@ -52,10 +52,10 @@ class search  {
         $this->selectDate();
 
     }
-    public function selectPDF($dateStart,$dateEnd,$whatWork = true,$drugs = false) {
+    public function selectPDF($start,$id,$dateStart,$dateEnd,$whatWork = true,$drugs = false) {
         $Mood = new Mood;
-        $hourStart = explode(":",Auth::User()->start_day);
-        $hour = Auth::User()->start_day;
+        $hourStart = explode(":",$start);
+        $hour = $start;
 
         $this->qestion =  Moods::query();
         $this->qestion->select(DB::Raw("(DATE(IF(HOUR(moods.date_start) >= '$hour', moods.date_start,Date_add(moods.date_start, INTERVAL - 1 DAY) )) ) as dat  "));
@@ -89,9 +89,9 @@ class search  {
         if ($dateEnd != "") {
             $this->qestion->where("date_end","<=",$dateEnd);
         }
-        $this->qestion->where("moods.id_users",Auth::User()->id);
+        $this->qestion->where("moods.id_users",$id);
         $this->list = $this->qestion->get();
-        $this->listSleep = $Mood->selectSleep(Auth::User()->id,$dateStart,$dateEnd,true);
+        $this->listSleep = $Mood->selectSleep($start,$id,$dateStart,$dateEnd,true);
     }
     private function setHour() {
         $second1 = 0;
@@ -110,10 +110,10 @@ class search  {
         }
         return array($second1,$second2);
     }
-    public function createQuestion($page) {
+    public function createQuestion($page,$start,$id) {
         
-        $hourStart = explode(":",Auth::User()->start_day);
-        $hour = Auth::User()->start_day;
+        $hourStart = explode(":",$start);
+        $hour = $start;
         $this->qestion =  Moods::query();
 
 
@@ -154,7 +154,7 @@ class search  {
         //if (count()) {
             $this->setWhatWotk();
         //}
-        $this->qestion->where("moods.id_users",Auth::User()->id);
+        $this->qestion->where("moods.id_users",$id);
         if (Input::get("moodForDay") != "") {
             $this->setGroup();
         }
@@ -171,10 +171,10 @@ class search  {
         
         $this->list = $this->qestion->Paginate(15);
     }
-    public function createQuestionForSleep($page) {
+    public function createQuestionForSleep($page,$start,$id) {
         
-        $hourStart = explode(":",Auth::User()->start_day);
-        $hour = Auth::User()->start_day;
+        $hourStart = explode(":",$start);
+        $hour = $start;
         $this->qestion =  Sleep::query();
 
 
@@ -194,7 +194,7 @@ class search  {
         $this->qestion->selectRaw("hour(date_start) as hour");
 
 
-        $this->qestion->where("sleeps.id_users",Auth::User()->id);
+        $this->qestion->where("sleeps.id_users",$id);
 
 
             $this->setWhere();
@@ -304,9 +304,9 @@ class search  {
         //var_dump(Input::get("what_work3"));
         $Common = new Common;
         
-        for ($i=0;$i < count(Input::get("what_work3"));$i++) {
+        for ($i=0;$i < 4;$i++) {
             
-            if (Input::get("what_work3")[$i] != "") {
+            if (isset(Input::get("what_work3")[$i]) and Input::get("what_work3")[$i] != "") {
                 
                 $stringSearch = $Common->charset_utf_fix2(Input::get("what_work3")[$i]);
                 $this->qestion->where("what_work","LIKE","%" . $stringSearch . "%");

@@ -49,4 +49,54 @@
         @endif
     </div>
 </div>
+
+
+<div id="login">
+    <form action="{{ url('/UserDr/Login_action')}}" method="post">
+    <table class="table login">
+        <tr>
+            <td colspan="2">
+                <span class="hight">LOGOWANIE LEKARZA</span>
+            </td>
+            
+        </tr>
+        <tr>
+            <td width="40%">
+               login
+            </td>
+            <td>
+                <input type="text" name="login" class="form-control" value="{{Input::old("login")}}">
+            </td>
+        </tr>
+        <tr>
+            <td width="40%">
+                Hash
+            </td>
+            <td>
+                <input type="password" name="hash" class="form-control">
+            </td>
+        </tr>
+
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <tr>
+            
+            <td colspan="2">
+                <input type="submit" value="Zaloguj" class="btn btn-primary">
+            </td>
+        </tr>
+        
+    </table>
+    </form>
+    <div id="succes">
+        @if (session('succesDr') )
+            {{session('succesDr')}}
+        @endif
+    </div>
+    <div id="error">
+        @if (session('errorDr') )
+            {{session('errorDr')}}
+        @endif
+    </div>
+</div>
+
 @endsection

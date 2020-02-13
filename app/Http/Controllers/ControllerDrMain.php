@@ -10,12 +10,17 @@ use Auth;
 use App\Http\Services\calendar as Calendar;
 use App\Http\Services\mood as Mood;
 use App\Http\Services\AIMood as AI;
+use App\Http\Services\User as user;
+use App\Http\Services\hashs as Hashs;
+use Cookie;
 
-class ControllerMain extends BaseController
+class ControllerDrMain extends BaseController
 {
     public function Main($year = "",$month = "",$day = "",$action = "") {
-
-        if ( (Auth::check()) ) {
+        $user = new user();
+        $Hash = new Hashs();
+         if ( ($Hash->checkHashLogin() == true) ) {
+            $user->updateHash();
 
             
             
@@ -24,14 +29,14 @@ class ControllerMain extends BaseController
             $Moods = new Mood;
             $AIMood = new AI;
             $kalendar->set_date($month,$action,$day,$year);
-            $timeLast  = $Moods->selectHourLastMoods(Auth::User()->id);
-            $timeSleep = $Moods->selectHourSleep(Auth::User()->id);
-            $listMoods = $Moods->downloadMoods(Auth::User()->id,$kalendar->year,$kalendar->month,$kalendar->day,Auth::User()->start_day);
-            $listSleep = $Moods->downloadSleep(Auth::User()->id,$kalendar->year,$kalendar->month,$kalendar->day);
+            $timeLast  = $Moods->selectHourLastMoods($Hash->id);
+            $timeSleep = $Moods->selectHourSleep($Hash->id);
+            $listMoods = $Moods->downloadMoods($Hash->id,$kalendar->year,$kalendar->month,$kalendar->day,$Hash->start);
+            $listSleep = $Moods->downloadSleep($Hash->id,$kalendar->year,$kalendar->month,$kalendar->day);
             $Moods->sortMoodsSleep($listMoods,$listSleep,"off",true);
-            $Moods->sumColorForMood(Auth::User()->id,$kalendar->year,$kalendar->month);
+            $Moods->sumColorForMood($Hash->id,$kalendar->year,$kalendar->month);
             if (count($listMoods) != 0) {
-                $Moods->sumColorForMood(Auth::User()->id,$kalendar->year,$kalendar->month,$kalendar->day);
+                $Moods->sumColorForMood($Hash->id,$kalendar->year,$kalendar->month,$kalendar->day);
             }
             $how_day_month = $kalendar->check_month($kalendar->month,$kalendar->year);
             $back_month = $kalendar->return_back_month($kalendar->month,$kalendar->year);
@@ -40,7 +45,7 @@ class ControllerMain extends BaseController
             $next_year  = $kalendar->return_next_year($kalendar->year);
             $back_year  = $kalendar->return_back_year($kalendar->year);
             
-            return View("Main.Main") ->with("month",$kalendar->month)
+            return View("Dr.Main.Main") ->with("month",$kalendar->month)
                     ->with("year",$kalendar->year)
                     ->with("day",$kalendar->day)
                     ->with("action",$kalendar->action)

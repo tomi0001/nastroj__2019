@@ -24,6 +24,17 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        Schema::create("hashes",function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id')->unsigned();
+            $table->integer("id_users")->unsigned();
+            $table->foreign("id_users")->references("id")->on("users");
+            $table->boolean("if_true")->nullable();
+            $table->char("hash",10)->nullable();
+            $table->timestamps();
+
+            
+        });
         Schema::create('sleeps', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -83,6 +94,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('hashes');
         Schema::dropIfExists('sleeps');
         Schema::dropIfExists('moods');
         Schema::dropIfExists('drugs');

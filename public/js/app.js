@@ -35,6 +35,24 @@ function addDrugs(url = null,i = null,id = null) {
     }
     
 }
+
+
+    function generateHash() {
+        var array = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','s','t','u','w','y','z','x','1','2','3','4','5','6','7','8','9','0'];
+        //alert(array.length);
+        var rand;
+        var chr;
+        var string = "";
+        for (var i=0;i< 10;i++ ) {
+           rand = parseInt(Math.random() * ((array.length  -1)  - 0) + 0);
+           chr =  array[rand];
+           string += chr;
+        }
+        
+        $("#hash").val(string);
+        
+    }
+
 function offHour() {
     //alert("dobrze");
     if($("#dayFor").is(':checked'))

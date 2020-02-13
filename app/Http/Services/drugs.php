@@ -60,7 +60,7 @@ class drugs  {
         
     }
 
-    public function selectDrugs($idMood) {
+    public function selectDrugs($idMood,$idUser) {
         $Drug = new Forwarding_drug;
         $list = $Drug->join("drugs","forwarding_drugs.id_drugs","drugs.id")
                 ->selectRaw("drugs.name as name")
@@ -68,7 +68,7 @@ class drugs  {
                 ->selectRaw("right(drugs.date,8) as date")
                
                 ->selectRaw("drugs.id as id")
-                ->where("drugs.id_users",Auth::User()->id)
+                ->where("drugs.id_users",$idUser)
                 ->where("forwarding_drugs.id_mood",$idMood)->get();
         return $list;
     }

@@ -1,4 +1,4 @@
-@extends('Layout.Main')
+@extends('Layout.DrMain')
 
 @section('content')
 <body onload='hideDiv({{$count}})'>
@@ -130,7 +130,7 @@
                         <td>
                             <br>
                             @if ($list[$i]['what_work'] == true)
-                            <button onclick="showDescription('{{url('/Mood/showDescription')}}','{{$list[$i]['id']}}','{{$i}}')" class='btn btn-primary'>Co robiłeś</button>
+                            <button onclick="showDescription('{{url('/MoodDr/showDescription')}}','{{$list[$i]['id']}}','{{$i}}')" class='btn btn-primary'>Co robiłeś</button>
                             @else
                             <button class='btn btn-danger' disabled>Nic nie robiłeś</button>
                             @endif
@@ -138,7 +138,7 @@
                         <td>
                             <br>
                             @if ($list[$i]['drugs'] == true)
-                            <button onclick="showDrugs('{{url('/Drugs/show')}}','{{$i}}','{{$list[$i]['id']}}')" class='btn btn-primary'>Pokaż leki</button>
+                            <button onclick="showDrugs('{{url('/DrugsDr/show')}}','{{$i}}','{{$list[$i]['id']}}')" class='btn btn-primary'>Pokaż leki</button>
                             @else
                             <button class='btn btn-danger' disabled>Nie było leków</button>
                             @endif
@@ -147,7 +147,7 @@
                         <td>
                             <br>
              
-                            <a href='{{url('/Main')}}/{{$list[$i]["year"]}}/{{$list[$i]["month"]}}/{{$list[$i]["day"]}}'><button class='btn btn-primary'>Idź do dnia</button></a>
+                            <a href='{{url('/MainDr')}}/{{$list[$i]["year"]}}/{{$list[$i]["month"]}}/{{$list[$i]["day"]}}'><button class='btn btn-primary'>Idź do dnia</button></a>
 
                         </td>
                     </tr>

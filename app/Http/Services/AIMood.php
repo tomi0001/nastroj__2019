@@ -35,18 +35,19 @@ class AIMood extends mood {
     public $tableAnxiety = [];
     public $tableStimu = [];
     public $tableNer = [];
-    public function  selectDays($hourStart,$hourEnd,$dataStart,$dataEnd,$type,$dayInput = "") {
-        $daystart = strtotime($dataStart) + (Auth::User()->start_day * 3600);
-        $dayend = strtotime($dataEnd) + (Auth::User()->start_day * 3600);
+    public function  selectDays($hourStart,$hourEnd,$dataStart,$dataEnd,$type,$start,$id,$dayInput = "") {
+        $daystart = strtotime($dataStart) + ($start * 3600);
+        $dayend = strtotime($dataEnd) + ($start * 3600);
         $days = [];
         $sumNer = 0;
+        //print $hourStart;
         $sumAnxiety = 0;
         $sumMood = 0;
         $sumStimu = 0;
         $z = 1;
         $j = 0;
         for ($i = $daystart;$i <= $dayend;$i += 86400 ) {
-            $check = $this->check($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400));
+            $check = $this->check($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),$start,$id);
            
             if ($check == false) {
                 //print "d";
@@ -54,10 +55,10 @@ class AIMood extends mood {
                 continue;
             }
             else {
-                $days[0][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"mood");
-                $days[1][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"anxiety");
-                $days[2][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"ner");
-                $days[3][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"stimulation");
+                $days[0][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"mood",$start,$id);
+                $days[1][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"anxiety",$start,$id);
+                $days[2][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"ner",$start,$id);
+                $days[3][$j] = $this->calculateAverage($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),"stimulation",$start,$id);
                 //$z++;
             }
             $sumMood += $days[0][$j];
@@ -86,10 +87,10 @@ class AIMood extends mood {
         //print round($this->sortMood((([0.1,0.2,0,0.3,-0.1,0.1,-0.1,0.2,0.1]) )),2);
         return $days;
     }
-    private function check($hourStart,$hourEnd,$dataStart,$dataEnd) {
+    private function check($hourStart,$hourEnd,$dataStart,$dataEnd,$start,$id) {
         $Moods = Moods::query();
-        $idUsers = Auth::User()->id;
-        $hour = Auth::User()->start_day;
+        $idUsers = $id;
+        $hour = $start;
                 $Moods->select(DB::Raw("(DATE(IF(HOUR(date_start) >= '$hour', date_start,Date_add(date_start, INTERVAL - 1 DAY) )) ) as dat  "))
                ->selectRaw("date_start as date_start")
                 ->selectRaw("date_end as date_end")
@@ -114,10 +115,10 @@ class AIMood extends mood {
             return true;
         }
     }
-    private function calculateAverage($hourStart,$hourEnd,$dataStart,$dataEnd,$type,$dayInput = "") {
+    private function calculateAverage($hourStart,$hourEnd,$dataStart,$dataEnd,$type,$start,$id,$dayInput = "") {
         $Moods = Moods::query();
-        $idUsers = Auth::User()->id;
-        $hour = Auth::User()->start_day;
+        $idUsers = $id;
+        $hour = $start;
         $average = 0;
         $second = 0;
         $sumMood = 0;
@@ -149,7 +150,7 @@ class AIMood extends mood {
 
         $i = 0;
         foreach ($list as $moodss) {
-
+            //print $moodss->level_mood . "<br>";
             $time1 = strtotime($moodss->date_start);
             $time2 = strtotime($moodss->date_end);
              $divi1 = explode(" ",$moodss->date_start);
@@ -160,12 +161,14 @@ class AIMood extends mood {
                 //print strtotime($dateComparate1) . "<br>";
             if ($time1 < strtotime($dateComparate1)) {
                 $div = strtotime($dateComparate1);
+                $div = $time1;
             }
             else {
                 $div = $time1;
             }
             if ($time2 < strtotime($dateComparate2)) {
                 $div2 = strtotime($dateComparate2);
+                $div2 = $time2;
             }
             else {
                 $div2 = $time2;

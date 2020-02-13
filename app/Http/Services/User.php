@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Password as Password;
 use Hash;
 use DB;
 use App\User as Users;
+use App\Hash as Hash2;
+use Cookie;
 class User {
    public $errors = [];
    public function checkField()   {
@@ -36,6 +38,19 @@ class User {
        
        
    }
+   /*
+   public function checkHash($idUsers) {
+       $Hash = new Hash2;
+       $ifTrue = $Hash->where("id_users",$idUsers)->first();
+       if (empty($ifTrue)) {
+           return 0;
+       }
+       else {
+        return $ifTrue->if_true;
+       }
+   }
+    * 
+    */
    public function checkPasswordForm() {
        if (strlen(Input::get("passwordNew")) < 5 or strlen(Input::get("passwordNewConfirm")) < 5) {
            array_push($this->errors, "Hasła muszą mieć minimum 5 znaków długości");
@@ -88,4 +103,11 @@ class User {
               array_push($this->errors, "Podana liczba musi być w przedziale od 0 do 23");
        }
    }
+   public function updateHash() {
+        $Hash = new Hashs;
+        $data = $Hash->selectData2();
+        Cookie::queue(Cookie::make('id', $data[0], 60));
+        Cookie::queue(Cookie::make('hash', $data[1], 60));
+        Cookie::queue(Cookie::make('start', $data[2], 60));
+    }
 }

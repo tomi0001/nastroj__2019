@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Services\User as User;
+use App\Http\Services\hashs as Hash2;
 use Illuminate\Support\Facades\Input as Input;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -58,7 +59,22 @@ class ControllerUser extends BaseController
     }
     public function Setting() {
         if ( (Auth::check()) ) {
-            return View("/User/Setting")->with("startDay",Auth::User()->start_day);
+            $Hash = new Hash2;
+            $ifTrue = $Hash->selectHash(Auth::User()->id);
+            if ($ifTrue == null) {
+                $tmp1 = null;
+                $tmp2 = null;
+            }
+            else {
+                $tmp1 = $ifTrue->if_true;
+                $tmp2 = $ifTrue->hash;
+            }
+            return View("/User/Setting")->with("startDay",Auth::User()->start_day)
+                    ->with("hash",$tmp1)
+                    ->with("textHash",$tmp2);
+        }
+        else {
+            return Redirect('/User/Login')->with('error','Musiałeś się wylogować');
         }
     }
     public function changeHour() {

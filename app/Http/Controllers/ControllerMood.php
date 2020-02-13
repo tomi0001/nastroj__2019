@@ -43,7 +43,7 @@ class ControllerMood extends BaseController
     public function showDescription() {
         if ( (Auth::check()) ) {
             $Mood = new Mood;
-            $description = $Mood->showDescription();
+            $description = $Mood->showDescription(Auth::User()->id);
             return View("Ajax.description")->with("description",$description);
         }
     }
@@ -115,7 +115,7 @@ class ControllerMood extends BaseController
     public function showDrugs() {
         if ( (Auth::check()) ) {
             $Mood = new Mood;
-            $list = $Mood->selectDrugs(Input::get("id"));
+            $list = $Mood->selectDrugs(Input::get("id"),Auth::User()->id);
             return View("Ajax.drugsList")->with("drugs",$list);
         }
     }

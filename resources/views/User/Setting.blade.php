@@ -71,8 +71,69 @@
         
         
     </tr>
+
+    </form>
+    
+    
+        <tr>
+        <td colspan="2" class="center">
+            WYGENERUJ HASH
+        </td>
+    </tr>    
+    <tr>
+        <td>
+            Czy można się logować za pomocą tego hasha 
+        </td>
+          <form action="{{ url('/User/changeHash')}}" method="get">
+        <td>
+            <select name="ifHash" class="form-control">
+                @if ($hash == 0)
+                    <option value=0 selected>Nie</option>
+                    <option value=1>Tak</option>
+                
+                @else
+                    <option value=1 selected>Tak</option>
+                    <option value=0>Nie</option>
+                @endif
+                
+            </select>
+        </td>
+        
+        
+        
+    </tr>
+    <tr>
+        <td>
+            Hash
+        </td>
+          
+        <td>
+                <input type="text" id="hash" name="nameHash" class="form-control" value="{{$textHash}}">
+        </td>
+        
+        
+        
+    </tr>
+    <tr>
+          
+        <td colspan="2" class="center">
+            <input type="button" onclick="generateHash()" class="btn btn-default" value="Wygeneruj hash">
+        </td>
+        
+        
+        
+    </tr>
+    <tr>
+        <td colspan="2" class="center">
+           <input type="submit"  class="btn btn-primary" value="Generuj">
+        </td>
+        
+        
+    </tr>
 </table>
     </form>
+    
+    
 </div>
     <div id="succes">
         @if (session('succes') )

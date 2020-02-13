@@ -305,7 +305,7 @@ class mood extends Drugs {
     }
     public function downloadMood(int $idUsers,$year,$month,$day) {
         $Moods = new Moods;
-        $this->initStartDay();
+        //$this->initStartDay($start);
         $arrayHour = $this->setHourMood($year,$month,$day,true);
         $listMood = $Moods
                 
@@ -351,9 +351,9 @@ class mood extends Drugs {
         $array["stimulation"] = round($stimulation / $division,2);
         return $array;
     }
-    public function downloadMoods(int $idUsers,$year,$month,$day) {
+    public function downloadMoods(int $idUsers,$year,$month,$day,$start) {
         $Moods = new Moods;
-        $this->initStartDay();
+        $this->initStartDay($start);
         $this->setHourMood($year,$month,$day);
         $this->listMood = $Moods->leftjoin("forwarding_drugs","moods.id","forwarding_drugs.id_mood")
                 ->selectRaw("moods.id as id")
@@ -385,9 +385,9 @@ class mood extends Drugs {
                 ->get();
         return $list;
     }
-    public function selectSleep(int $idUsers,$dateStart,$dateEnd,$bool = false) {
+    public function selectSleep($start,int $idUsers,$dateStart,$dateEnd,$bool = false) {
         $Sleep = Sleep::query();
-        $hour = Auth::User()->start_day;
+        $hour = $start;
         $Sleep->select(DB::Raw("(DATE(IF(HOUR(date_start) >= '$hour', date_start,Date_add(date_start, INTERVAL - 1 DAY) )) ) as dat  "))
                 ->selectRaw("date_start as date_start")
                 ->selectRaw("date_end as date_end")
@@ -425,8 +425,8 @@ class mood extends Drugs {
             return [date("Y-m-d H:i:s",$second),date("Y-m-d H:i:s",$second2)];
         }
     }
-    public function initStartDay() {
-        $this->startDay = Auth::User()->start_day;
+    public function initStartDay($start) {
+        $this->startDay = $start;
         if ($this->startDay == "") {
             $this->startDay = 0;
         }
@@ -587,8 +587,8 @@ class mood extends Drugs {
         $Moods->where("id",$idMood)->where("id_users",Auth::User()->id)
                 ->update(["level_mood"=>$levelMood,"level_anxiety"=>$levelAnxiety,"level_nervousness"=>$levelNervousness,"level_stimulation"=>$levelStimulation]);
     }
-    public function showDescription() {
-        $idUsers = Auth::User()->id;
+    public function showDescription($idUsers) {
+        //$idUsers = Auth::User()->id;
         $Moods = new Moods;
         $Common = new Common;
         $description = $Moods->where("id_users",$idUsers)
