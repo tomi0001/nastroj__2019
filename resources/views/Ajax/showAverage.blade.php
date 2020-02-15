@@ -9,28 +9,32 @@
                 Poziom nastroju
             </td>
             <td>
-                Różnica nastroju
+                odchylenie nastroju
+                
+            </td>
+            <td>
+                różnica nastroju (min/max)
                 
             </td>
             <td>
                 Poziom lęku
             </td>
             <td>
-                Różnica lęku
+                odchylenie lęku
                 
             </td>
             <td>
                 Poziom zdenerowania
             </td>
             <td>
-                Różnica zdenerowania
+                odchylenie zdenerowania
                 
             </td>
             <td>
                 Poziom pobudzenia
             </td>
             <td>
-                Różnica pobudzenia
+                odchylenie pobudzenia
                 
             </td>
       </tr>
@@ -43,6 +47,9 @@
             </td>
             <td>
                 {{$list[1]}}
+            </td>
+            <td>
+                {{$list[8]}} / {{$list[9]}}
             </td>
             <td>
                 {{$list[2]}}
@@ -75,28 +82,32 @@
                 Poziom nastroju
             </td>
             <td>
-                Różnica nastroju
+                odchylenie nastroju
+                
+            </td>
+            <td>
+                różnica nastroju (min/max)
                 
             </td>
             <td>
                 Poziom lęku
             </td>
             <td>
-                Różnica lęku
+                odchylenie lęku
                 
             </td>
             <td>
                 Poziom zdenerowania
             </td>
             <td>
-                Różnica zdenerowania
+                odchylenie zdenerowania
                 
             </td>
             <td>
                 Poziom pobudzenia
             </td>
             <td>
-                Różnica pobudzenia
+                odchylenie pobudzenia
                 
             </td>
       </tr>
@@ -112,7 +123,10 @@
                 {{$harmonyMood[$i]}}
                 
             </td>
-            
+            <td>
+                {{$list[4][$i]}} / {{$list[5][$i]}}
+                
+            </td>
             <td>
                 {{$list[1][$i]}}
             </td>
