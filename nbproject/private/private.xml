@@ -4,48 +4,57 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/html/nastroj_2019/database/migrations/2014_10_12_000000_create_users_table.php</file>
-            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerSearch.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/drugsList.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerMood.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/AjaxDr/drugsList.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Main/Main.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerUser.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/User/Login.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Layout/Main.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerDrSearch.php</file>
             <file>file:/var/www/html/nastroj_2019/public/js/app.js</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Main/addMood.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/config/app.php</file>
-            <file>file:/var/www/html/nastroj_2019/public/css/app.css</file>
+            <file>file:/var/www/html/nastroj_2019/app/Mood.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Services/AIMood.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Services/drugs.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Search/AI.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Layout/kalendar.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/showAverage.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/User.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Search/main.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/User/Register.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Services/User.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Forwarding_drug.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerHash.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/succes.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/css/app.css</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Search/action.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Main/Main.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerDrUser.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Services/hashs.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Services/calendar.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Services/common.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/editMood.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerMain.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/AjaxDr/description.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Drug.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Layout/User.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Search/main.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/error.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerSearch.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Main/Main.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Layout/Main.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/AjaxDr/showAverage.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/public/css/app.css</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Layout/kalendar.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/showAverage.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Search/AI.blade.php</file>
+            <file>file:/var/www/html/nastroj_2019/css/app.css</file>
             <file>file:/var/www/html/nastroj_2019/routes/web.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Services/search.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Layout/kalendar.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerDrMain.php</file>
-            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerDrUser.php</file>
-            <file>file:/var/www/html/nastroj_2019/app/Http/Services/hashs.php</file>
-            <file>file:/var/www/html/nastroj_2019/app/Http/Services/calendar.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Search/action.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/app/Http/Services/common.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/description.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Main/showMood.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/editMood.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Layout/DrMain.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/.env</file>
-            <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerMain.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/AjaxDr/description.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Layout/User.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Search/main.blade.php</file>
-            <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/error.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/User/Setting.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerDrMood.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Services/mood.php</file>

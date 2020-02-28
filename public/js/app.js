@@ -188,12 +188,14 @@ function changeMood() {
     if ($("#type").val() == "sleep") {
         $("#sort").html("<option value='date'>Według daty</option><option value='hour'>Według Godziny</option><option value='longMood'>Według długości trwania snu</option>")
         $(".typeMood").prop('disabled', true);
+        $(".typeSleep").prop("disabled",false);
         $(".mooddd").text("snu");
     }
     else {
         $("#sort").html("<option value='date'>Według daty</option><option value='hour'>Według Godziny</option><option value='mood'>Według nastroju</option><option value='anxiety'>Według lęku</option><option value='nervousness'>Według zdenerwowania</option><option value='stimulation'>Według pobudzenia</option><option value='longMood'>Według długości trwania nastroju</option>")
         $(".typeMood").prop('disabled', false);
         $(".mooddd").text("nastroju");
+        $(".typeSleep").prop("disabled",true);
     }
     
 }

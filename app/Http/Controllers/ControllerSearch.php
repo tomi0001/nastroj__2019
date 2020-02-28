@@ -38,17 +38,37 @@ class ControllerSearch extends BaseController
             }
             if (Input::get("type") == "mood") {
                 $Search->createQuestion($page,Auth::User()->start_day,Auth::User()->id);
-            }
-            else {
-                $Search->createQuestionForSleep($page,Auth::User()->start_day,Auth::User()->id);
-            }
-            
-            $Search->sortMoods("off");
+                $Search->sortMoods("off");
             
             return View("Search.action")->with("list",$Search->arrayList)
                     ->with("paginate",$Search->list)
                     ->with("percent",$Search->listPercent)
                     ->with("count",count($Search->list));
+            }
+            else if (Input::get("average") == "on") {
+                $Search->averageForSleep(Auth::User()->start_day,Auth::User()->id);
+                $Search->averageForSleepCount(Auth::User()->start_day,Auth::User()->id);
+                if ($Search->count == 0) {
+                    $Search->count = 1;
+                }
+                return View("Search.average")->with("list",round($Search->list->result / $Search->count,2));
+                        //->with("count",$Search->count);
+                    //->with("paginate",$Search->list)
+                    //->with("percent",$Search->listPercent)
+                    //->with("count",count($Search->list));
+            }
+            else {
+                $Search->createQuestionForSleep($page,Auth::User()->start_day,Auth::User()->id);
+                $Search->sortMoods("off");
+            
+            return View("Search.action")->with("list",$Search->arrayList)
+                    ->with("paginate",$Search->list)
+                    ->with("percent",$Search->listPercent)
+                    ->with("count",count($Search->list));
+                
+            }
+            
+            
 
         }
         

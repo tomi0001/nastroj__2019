@@ -31,6 +31,7 @@ class search  {
     public $listPercent;
     public $listMoods;
     public $listSleep;
+    public $count;
     public $errors = [];
     
     private function selectDate() {
@@ -206,6 +207,42 @@ class search  {
         
         $this->list = $this->qestion->Paginate(15);
         
+    }
+    public function averageForSleep($start,$id) {
+        $hourStart = explode(":",$start);
+        $hour = $start;
+        $this->qestion =  Sleep::query();
+
+
+        
+        //$this->qestion->select(DB::Raw("(DATE(IF(HOUR(sleeps.date_start) >= '$hour', sleeps.date_start,Date_add(sleeps.date_start, INTERVAL - 1 DAY) )) ) as dat  "));
+        $this->qestion->selectRaw("((sum(UNIX_TIMESTAMP(sleeps.date_end) - UNIX_TIMESTAMP(sleeps.date_start))) / 3600)  as result");
+        
+        $this->qestion->where("sleeps.id_users",$id);
+        $this->setWhereCountSleep();
+        $this->setDate();
+        
+        $this->list = $this->qestion->first();
+    }
+    private function setWhereCountSleep() {
+        $this->qestion->whereRaw("((HOUR(sleeps.date_start) >= '20') or (HOUR(sleeps.date_start) <= '4')) and HOUR(sleeps.date_end) <= '14'");
+        //$this->qestion->whereRaw("");
+    }
+    public function averageForSleepCount($start,$id) {
+        $hourStart = explode(":",$start);
+        $hour = $start;
+        $this->qestion =  Sleep::query();
+
+
+        
+        //$this->qestion->select(DB::Raw("(DATE(IF(HOUR(sleeps.date_start) >= '$hour', sleeps.date_start,Date_add(sleeps.date_start, INTERVAL - 1 DAY) )) ) as dat  "));
+        //$this->qestion->selectRaw("sum(((sleeps.date_end - sleeps.date_start)) / 3600)  as result");
+        
+        $this->qestion->where("sleeps.id_users",$id);
+        $this->setWhereCountSleep();
+        $this->setDate();
+        
+        $this->count = $this->qestion->count();
     }
     private function setDrugs() {
         $this->qestion->where("drugs.name", Input::get("drugs") );

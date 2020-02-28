@@ -297,6 +297,14 @@
             </td>
         </tr>
         <tr>
+            <td class="center">
+                średnia snu
+            </td>
+            <td>
+               <input type="checkbox" name="average" class="form-check-input typeSleep">
+            </td>
+        </tr>
+        <tr>
             <td colspan="2" class="center">
                 <input type="submit" value="Szukaj" class="btn btn-primary">
             </td>
