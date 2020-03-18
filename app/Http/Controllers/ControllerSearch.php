@@ -51,7 +51,7 @@ class ControllerSearch extends BaseController
                 if ($Search->count == 0) {
                     $Search->count = 1;
                 }
-                return View("Search.average")->with("list",round($Search->list->result / $Search->count,2));
+                return View("Search.average")->with("list",($Mood->changeSecondAtHour(($Search->list->result  / $Search->count / 3600))));
                         //->with("count",$Search->count);
                     //->with("paginate",$Search->list)
                     //->with("percent",$Search->listPercent)

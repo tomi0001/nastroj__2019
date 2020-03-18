@@ -9,7 +9,7 @@
             <td>
                 <div class="center">
     <span class="title">średni czas snu
-        {{$list}} H</span>
+        {{$list}}</span>
                 </div>
             </td>
         </tr>

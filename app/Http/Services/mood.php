@@ -265,7 +265,7 @@ class mood extends Drugs {
         }
         return $list;
     }
-    private function changeSecondAtHour($hour) {
+    public function changeSecondAtHour($hour) {
         if (strstr($hour,".")) {
             $div = explode(".",$hour);
             if ($div[0] == 0) {

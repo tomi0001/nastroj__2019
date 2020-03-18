@@ -120,6 +120,7 @@ class search  {
 
         
         $this->qestion->select(DB::Raw("(DATE(IF(HOUR(moods.date_start) >= '$hour', moods.date_start,Date_add(moods.date_start, INTERVAL - 1 DAY) )) ) as dat  "));
+        
         $this->qestion->selectRaw("hour(date_start) as hour");
         $this->qestion->selectRaw("level_mood as level_mood");
         $this->qestion->selectRaw("level_anxiety as level_anxiety");
@@ -148,11 +149,13 @@ class search  {
             $this->qestion->selectRaw("round(sum(TIMESTAMPDIFF (SECOND, date_start , date_end)  * level_stimulation) / "
                    . "sum(TIMESTAMPDIFF(second,date_start,date_end)),2) as nas4");
         }
+        //$this->qestion->select(DB::Raw("CASE WHEN forwarding_drugs.id_mood = '' THEN   '0'    END  "));
         $this->qestion->leftjoin("forwarding_drugs","forwarding_drugs.id_mood","moods.id");
         if (Input::get("drugs") != "") {
             $this->qestion->leftjoin("drugs","drugs.id","forwarding_drugs.id_drugs");
         }
         //if (count()) {
+        
             $this->setWhatWotk();
         //}
         $this->qestion->where("moods.id_users",$id);
@@ -162,7 +165,9 @@ class search  {
         
         else {
             $this->setWhere();
+            $this->setGroup2();
         }
+         
         if (Input::get("drugs") != "") {
             $this->setDrugs();
         }
@@ -216,7 +221,7 @@ class search  {
 
         
         //$this->qestion->select(DB::Raw("(DATE(IF(HOUR(sleeps.date_start) >= '$hour', sleeps.date_start,Date_add(sleeps.date_start, INTERVAL - 1 DAY) )) ) as dat  "));
-        $this->qestion->selectRaw("((sum(UNIX_TIMESTAMP(sleeps.date_end) - UNIX_TIMESTAMP(sleeps.date_start))) / 3600)  as result");
+        $this->qestion->selectRaw("((sum(UNIX_TIMESTAMP(sleeps.date_end) - UNIX_TIMESTAMP(sleeps.date_start))) )  as result");
         
         $this->qestion->where("sleeps.id_users",$id);
         $this->setWhereCountSleep();
@@ -298,10 +303,16 @@ class search  {
         }
 
     }
+    private function setGroup2() {
+        //$this->qestion->groupBy("CASE WHEN `forwarding_drugs`.`id_mood` = null THEN '0'  else `forwarding_drugs`.`id_mood` = `forwarding_drugs`.`id_mood` END");
+        //$this->qestion->groupBy("moods.id");
+        //$this->qestion->havingRaw("CASE WHEN count(forwarding_drugs.id_mood) = 0 THEN  1  else forwarding_drugs.id_mood  END ");
+    }
     private function setGroup() {
         $hourStart = explode(":",Auth::User()->start_day);
         $hour = Auth::User()->start_day;
         $this->qestion->groupBy(DB::Raw("(DATE(IF(HOUR(moods.date_start) >= '$hour', moods.date_start,Date_add(moods.date_start, INTERVAL - 1 DAY) )) ) "));
+        //$this->qestion->groupBy("forwarding_drugs.id_mood");
         if (Input::get("moodFrom") != "") {
             $this->qestion->havingRaw("round(sum(TIMESTAMPDIFF (SECOND, moods.date_start , moods.date_end)  * moods.level_mood) / "
                    . "sum(TIMESTAMPDIFF(second,moods.date_start,moods.date_end)),2) >= '" . Input::get("moodFrom") . "'");

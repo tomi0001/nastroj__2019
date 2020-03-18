@@ -64,3 +64,6 @@ Route::get('/Sleep/delete', "ControllerMood@deleteSleep");
 Route::get("/PDF/generate","ControllerSearch@savePDF");
 Route::get("/PDFDr/generate","ControllerDrSearch@savePDF");
 //Route::get("/Edit","ControllerMain@editMood ");
+
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
