@@ -362,6 +362,42 @@ class search  {
         }
         
     }
+    public function sumMood() {
+        $Mood =  Moods::query();
+        $Mood->selectRaw("(sum(TIMESTAMPDIFF (SECOND, date_start , date_end)) / 3600) as sum");
+        if (Input::get("dateFrom") != "") {
+                $Mood->where("date_start",">=",Input::get("dateFrom"));
+        }
+        if (Input::get("dateTo") != "") {
+                $Mood->where("date_end","<=",Input::get("dateTo"));
+        }
+        if (Input::get("moodFrom") != "") {
+            $Mood->where("level_mood",">=",Input::get("moodFrom"));
+        }
+        if (Input::get("moodTo") != "") {
+            $Mood->where("level_mood","<=",Input::get("moodTo"));
+        }
+        if (Input::get("anxietyFrom") != "") {
+            $Mood->where("level_anxiety",">=",Input::get("anxietyFrom"));
+        }
+        if (Input::get("anxietyTo") != "") {
+            $Mood->where("level_anxiety","<=",Input::get("anxietyTo"));
+        }
+        if (Input::get("nerwoFrom") != "") {
+            $Mood->where("level_nervousness",">=",Input::get("nerwoFrom"));
+        }
+        if (Input::get("nerwoTo") != "") {
+            $Mood->where("level_nervousness","<=",Input::get("nerwoTo"));
+        }
+        if (Input::get("stimulationFrom") != "") {
+            $Mood->where("level_stimulation",">=",Input::get("stimulationFrom"));
+        }
+        if (Input::get("stimulationTo") != "") {
+            $Mood->where("level_stimulation","<=",Input::get("stimulationTo"));
+        }
+        $sum = $Mood->first();
+        return $sum;
+    }
     private function setWhere() {
         $Common = new Common;
         $second = $this->setHour();

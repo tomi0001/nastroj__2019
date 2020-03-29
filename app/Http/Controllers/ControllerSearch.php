@@ -73,6 +73,18 @@ class ControllerSearch extends BaseController
         }
         
     }
+    public function searchMood() {
+        $Search = new Search;
+        if ( (Auth::check()) ) {
+            $sum = $Search->sumMood();
+            return View("Search.sumMood")->with("sum",round($sum->sum,2))
+                    ->with("dateFrom",Input::get("dateFrom"))->with("dateTo",Input::get("dateTo"))
+                    ->with("moodFrom",Input::get("moodFrom"))->with("moodTo",Input::get("moodTo"))
+                    ->with("anxietyFrom",Input::get("anxietyFrom"))->with("anxietyTo",Input::get("anxietyTo"))
+                    ->with("nerwoFrom",Input::get("nerwoFrom"))->with("nerwoTo",Input::get("nerwoTo"))
+                    ->with("stimulationFrom",Input::get("stimulationFrom"))->with("stimulationTo",Input::get("stimulationTo"));
+        }
+    }
     public function savePDF() {
         $Search = new Search;
         if ( (Auth::check()) ) {

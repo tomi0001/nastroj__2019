@@ -359,12 +359,16 @@
             </td>
 
             <td class="center">
-                <select name="type" class="form-control">
-                    <option value="mood">Nastroju</option>
+                <select name="week" class="form-control">
+                    <option value=""></optino>
+                    <option value="1">Poniedziałek</option>
                     
-                    <option value="anxiety">lęku</option>
-                    <option value="nervousness">zdenerwowania</option>
-                    <option value="stimulation">pobudzenia</option>
+                    <option value="2">Wtorek</option>
+                    <option value="3">Środa</option>
+                    <option value="4">Czwartek</option>
+                    <option value="5">Piątek</option>
+                    <option value="6">Sobota</option>
+                    <option value="7">Niedziela</option>
                     
                 </select>
             </td>
@@ -429,6 +433,99 @@
             </form>
             
         </table>
+        
+        
+        <table class='table'>
+            <form method='get'>
+                <tr>
+                    <td class="center" colspan='8'>
+                        Oblicz ile H trwały nastroje
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pozmior nastroju od
+                    </td>
+                    <td>
+                        <input type='text' name='moodFrom' class='form-control'>
+                    </td>
+                    <td>
+                        Pozmior nastroju do
+                    </td>
+                    <td>
+                        <input type='text' name='moodTo' class='form-control'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pozmior lęku od
+                    </td>
+                    <td>
+                        <input type='text' name='anxietyFrom' class='form-control'>
+                    </td>
+                    <td>
+                        Pozmior lęku do
+                    </td>
+                    <td>
+                        <input type='text' name='anxietyTo' class='form-control'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pozmior zdenerwowania od
+                    </td>
+                    <td>
+                        <input type='text' name='nerwoFrom' class='form-control'>
+                    </td>
+                    <td>
+                        Pozmior zdenerwowania do
+                    </td>
+                    <td>
+                        <input type='text' name='nerwoTo' class='form-control'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pozmior pobudzenia od
+                    </td>
+                    <td>
+                        <input type='text' name='stimulationFrom' class='form-control'>
+                    </td>
+                    <td>
+                        Pozmior pobudzenia do
+                    </td>
+                    <td>
+                        <input type='text' name='stimulationTo' class='form-control'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Data od
+                    </td>
+                    <td>
+                        <input type='date' name='dateFrom' class='form-control'>
+                    </td>
+                    <td>
+                        Data do
+                    </td>
+                    <td>
+                        <input type='date' name='dateTo' class='form-control'>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class='center'>
+                        <input type='button' onclick='sumMood("{{ url('/Produkt/actionCountMood')}}")' class='btn btn-primary' value='Oblicz'>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8">
+                    <div id="MoodSearch" class="tras"></div>
+            
+                    </td>
+                </tr>
+            </form>
+        </table>
+        
         <table class="table">
             <form action="{{ url('/PDF/generate')}}">
                 <tr>

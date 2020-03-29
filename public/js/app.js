@@ -177,6 +177,19 @@ $.ajax({ type: "GET",
     //$("#AI").load(url + "?" + $("form").serialize()).append();
     $("#AI").prepend(response);
 }
+function sumMood(url) {
+    var response;
+    $.ajax({ type: "GET",   
+         url: url + "?" + $("form").serialize(),   
+         async: false,
+         success : function(text)
+         {
+             response= text;
+         }
+    });
+    //$("#AI").load(url + "?" + $("form").serialize()).append();
+    $("#MoodSearch").prepend(response);
+}
 function deleteWorld() {
     $(".t").remove();
     //alert("ss");

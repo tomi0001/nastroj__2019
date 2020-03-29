@@ -47,6 +47,14 @@ class AIMood extends mood {
         $z = 1;
         $j = 0;
         for ($i = $daystart;$i <= $dayend;$i += 86400 ) {
+            if (  Input::get("week") != "") {
+                if (date('N', $i) != Input::get("week")) {
+                
+                    continue;
+                   //print "s";
+                }
+            }
+            //print date('N', $i)  ."<br>";
             $check = $this->check($hourStart,$hourEnd,date("Y-m-d H:i:s",$i),date("Y-m-d H:i:s",$i+86400),$start,$id);
            
             if ($check == false) {
@@ -105,12 +113,14 @@ class AIMood extends mood {
                 ->selectRaw("level_nervousness as level_nervousness")
                 ->selectRaw("level_stimulation as level_stimulation")
                 ->selectRaw("level_mood as level_mood")
+                        
                 
                       ->where("id_users",$idUsers);
         if ($dataStart != "") {
             $Moods->where("date_start",">=",$dataStart);
             $Moods->where("date_start","<=",$dataEnd);
         }
+        //$Moods->whereRaw("week(moods.date_start) = 0");
         if ($hourStart != "" and $hourEnd != "") {
            $Moods->whereRaw("(hour(time(date_start)) BETWEEN $hourStart AND $hourEnd or hour(time(date_end)) BETWEEN $hourStart AND $hourEnd or hour(time(date_start)) < '$hourStart' and hour(time(date_end)) > '$hourEnd')");
         }
@@ -155,6 +165,7 @@ class AIMood extends mood {
             $Moods2->where("date_start",">=",$dataStart);
             $Moods2->where("date_start","<=",$dataEnd);
         }
+        //$Moods2->whereRaw("week(moods.date_start) = 0");
         if ($hourStart != "" and $hourEnd != "") {
            $Moods2->whereRaw("(hour(time(date_start)) BETWEEN $hourStart AND $hourEnd or hour(time(date_end)) BETWEEN $hourStart AND $hourEnd or hour(time(date_start)) < '$hourStart' and hour(time(date_end)) > '$hourEnd')");
         }
@@ -191,6 +202,7 @@ class AIMood extends mood {
             $Moods->where("date_start",">=",$dataStart);
             $Moods->where("date_start","<=",$dataEnd);
         }
+        //$Moods->whereRaw("week(moods.date_start) = 0");
         if ($hourStart != "" and $hourEnd != "") {
            $Moods->whereRaw("(hour(time(date_start)) BETWEEN $hourStart AND $hourEnd or hour(time(date_end)) BETWEEN $hourStart AND $hourEnd or hour(time(date_start)) < '$hourStart' and hour(time(date_end)) > '$hourEnd')");
         }

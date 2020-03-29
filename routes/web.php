@@ -45,6 +45,8 @@ Route::get('/MoodDr/showDescription',"ControllerDrMood@showDescription");
 Route::get("/Produkt/Search","ControllerSearch@main");
 Route::get("/Produkt/Search_action","ControllerSearch@searchAction");
 Route::get("/Produkt/actionAI","ControllerSearch@searchAI");
+Route::get("/Produkt/actionCountMood","ControllerSearch@searchMood");
+
 
 Route::get("/ProduktDr/Search","ControllerDrSearch@main");
 Route::get("/ProduktDr/Search_action","ControllerDrSearch@searchAction");
