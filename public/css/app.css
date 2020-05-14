@@ -183,7 +183,7 @@ div.cell_active {
 div.cell {
     height: 100%;
     padding-top: 23px;
-    background-color: #7599cb;
+    background-color: #496E66;
     opacity: 0.7;
     border-radius: 5px;
     
@@ -375,14 +375,16 @@ td.noborder {
 }
 td.boldWarning {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 17px;
     color: #A30804;
 }
 td.boldSleep {
     font-weight: bold;
     color: #192B52;
 }
-
+td.centerbold {
+    text-align: center;
+}
 hr.mood {
      border: 5px solid #225169;
   border-radius: 15px;
@@ -542,12 +544,234 @@ div.level10 {
 
 
 
+thead.titleThead {
+    background-color: #2d5561;
+    opacity: 0.7;
+
+}
+
+
+hr.mood {
+    border: 5px solid #664c5d;
+    border-radius: 5px;
+    width: 80%;
+}
+
+
+div.titlemood-10 {
+
+    background-color: #15190f;
+
+
+    background: linear-gradient(90deg, #15190f 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+
+}
+div.titlemood-9 {
+
+    background-color: #242423;
+
+
+    background: linear-gradient(90deg, #242423 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood-8 {
+
+    background-color: #41403F;
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, #41403F 65%, rgba(41,8,42,0) 100%);
+    height: 100%;
+}
+div.titlemood-7 {
+
+    background-color: #5C5B59;
+
+
+    background: linear-gradient(90deg, #5C5B59 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood-6 {
+
+    background-color: #72716F;
+
+    background: linear-gradient(90deg, #72716F 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+
+div.titlemood-5 {
+
+    background-color: #868273;
+
+
+    background: linear-gradient(90deg, #868273 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood-4 {
+
+    background-color: #979F87;
+
+
+
+    background: linear-gradient(90deg, #979F87 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+
+div.titlemood-3 {
+
+    background-color: #A8B298;
+
+
+    background: linear-gradient(90deg, #A8B298 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood-2 {
+
+    background-color: #C3CCB5;
+
+    background: linear-gradient(90deg, #C3CCB5 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood-1 {
+
+    background-color: #CFCBB5;
+
+
+    background: linear-gradient(90deg, #CFCBB5 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood0 {
+
+    background-color: white;
+
+
+    background: linear-gradient(90deg, white 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood1 {
+
+    background-color: #f6f9ac;
+
+
+
+    background: linear-gradient(90deg, #f6f9ac 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood2 {
+
+    background-color: #f5f988;
+
+
+    background: linear-gradient(90deg, #f5f988 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood3 {
+
+    background-color: #dfe365;
+
+
+    background: linear-gradient(90deg, #dfe365 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+
+}
+div.titlemood4 {
+
+    background-color: #e5ea50;
+
+
+    background: linear-gradient(90deg, #e5ea50 65%, rgba(41,8,42,0) 100%);
+
+    height: 30px;
+
+}
+div.titlemood5 {
+
+    background-color: #d8de3b;
+
+
+    background: linear-gradient(90deg, #d8de3b 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+span.titlddemood7 {
+
+
+
+    background-color: #cdd410;
+
+
+
+    background: linear-gradient(90deg, #cdd410 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood7 {
+
+    background-color: #999f00;
+
+
+
+    background: linear-gradient(90deg, #999f00 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood8 {
+
+    background-color: #9ae021;
+
+
+
+    background: linear-gradient(90deg, #9ae021 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood9 {
+
+    background-color: #84c80f;
+
+
+
+    background: linear-gradient(90deg, #84c80f 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titleSleep2 {
+    background-color: #c852c3;
+
+
+
+    background: linear-gradient(90deg, #c852c3 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+div.titlemood10 {
 
 
 
 
+    background: linear-gradient(90deg, #4c7701 65%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
 
 
+td.titlemood{
+    position: relative;
+    width: 100%;
+    padding: 30px 50px;
+    box-sizing: border-box;
+
+    font-weight: 600;
+    margin: 10px 0;
+
+
+}
+div.titlemood6{
+
+    background: linear-gradient(90deg, #cdd410 0%, rgba(41,8,42,0) 100%);
+    height: 30px;
+}
+
+div.buttonMood {
+    padding: 10px;
+    word-spacing: 50px;
+}
 div.addMood {
     width: 65%;
     margin-left: auto;
@@ -768,7 +992,12 @@ body {
     
     
 }
-
+td.sleepTd {
+    background-color: #5A175E;
+}
+td.moodTd {
+    background-color: #99CF0C;
+}
 TABLE.table > tbody > tr > td > DIV > TABLE.table  {
      background-color:transparent;
      color: white;

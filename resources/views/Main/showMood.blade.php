@@ -1,247 +1,199 @@
 <body onload='hideDiv({{$count}})'>
-<div class='center'>
-  <div class='center2'>
-      @if (!empty($colorDay) )
-    <div class='level{{$colorDay["mood"]}}' style='width: 100%'>
+@php
+    $i = 1;
+@endphp
+@if (!empty($colorDay) )
+    <div class='level{{$colorDay["mood"]}}' style='width: 40%; text-align: center; margin-left: auto;margin-right: auto;'>
         Poziom nastróju dla tego dnia {{$colorForDay["mood"]}}
     </div>
-    <div class='level{{$colorDay["anxiety"]}}' style='width: 100%'>
+    <div class='level{{$colorDay["anxiety"]}}' style='width: 40%;text-align: center; margin-left: auto;margin-right: auto;'>
         Poziom lęku dla tego dnia {{$colorForDay["anxiety"]}}
     </div>
-    <div class='level{{$colorDay["nervousness"]}}' style='width: 100%'>
+    <div class='level{{$colorDay["nervousness"]}}' style='width: 40%;text-align: center; margin-left: auto;margin-right: auto;'>
         Poziom zdenerwowania dla tego dnia {{$colorForDay["nervousness"]}}
     </div>
-    <div class='level{{$colorDay["stimulation"]}}' style='width: 100%'>
+    <div class='level{{$colorDay["stimulation"]}}' style='width: 40%;text-align: center; margin-left: auto;margin-right: auto;'>
         Poziom pobudzenia dla tego dnia {{$colorForDay["stimulation"]}}
     </div>
-      @endif
-  </div>
-    <br>
-    <div class='mood'>
-        
-    
+@endif
+<table class="table" style="width: 90%; margin-left: auto;margin-right: auto;">
+    <thead class="titleThead">
+        <td width="10%" class="center">
+            Start
+        </td>
+        <td width="10%" class="center">
+            Koniec
+        </td>
+        <td width="10%" class="center">
+            Nastrój
+        </td>
+        <td width="10%" class="center">
+            Lęk
+        </td>
+        <td width="10%" class="center">
+            Zdenerwowanie
+        </td>
+        <td width="10%" class="center">
+            Pobudzenie
+        </td>
+        <td width="15%" class="center">
+            Epizdy Pychotyczne /<br> Ilośc wybudzeń
+        </td>
+    </thead>
+    @foreach ($listMood as $list)
+        <tr class="idMood{{$i-1}}">
+            @if ($list["type"] == 0)
+                <td colspan="7" class=" titlemood" >
 
-        @for ($i = 0;$i < count($listMood);$i++)
-        @php
-        $j = $i+1;
-        @endphp
-        @if ($listMood[$i]["type"] == 1)
-        <div class='titleMood'>
-            <div class='center background'>{{$j}}</div>
-            <table class=' table table-borderless '>
-                 <tr class='idMood{{$i}} ' >
+                    <div class="titleSleep2" style="width: {{$listPercent[$i-1]["percent"]}}%;"> <span style="color: #7e1d38; font-size: 21px;">{{$i}}</span></div>
 
-                    <td colspan="6" class='boldTitle'>
-                        
-                    </td>
-                </tr>
-        @else
-        
-                <div class='titleSleep'>
-            <div class='center background'>{{$j}}</div>
-            <table class=' table table-borderless '>
-                 <tr class='idMood{{$i}} ' >
-
-                    <td colspan="6" class='boldTitle'>
-                        
-                    </td>
-                </tr>
-        @endif
-            @if ($listMood[$i]["type"] == 1)
-                <tr class='idMood{{$i}}'>
-
-                    <td colspan="6">
-                        <div class='level{{$listMood[$i]["color_mood"]}}' style='width:{{$listPercent[$i]["percent"]}}%;'>
-                        &nbsp;
-                        </div>
-                    </td>
-                </tr>
-                <tr class='idMood{{$i}}'>
-                    <td class='bold' width='25%' colspan="3">
-                         {{$listMood[$i]["date_start"]}} - 
-                    
-                        {{$listMood[$i]["date_end"]}}
-                    </td>
-                    <td class='bold' width='50%' colspan="3">
-                        <div class='center'>Czar trwania:  &nbsp;&nbsp;&nbsp;&nbsp;   {{$listPercent[$i]["second"]}}</div>
-                    </td>
-                    
-                </tr>
-                <tr class='idMood{{$i}}'>
-                    <td class='bold' width='25%'>
-                         Poziom nastroju: {{$listMood[$i]["level_mood"]}}
-                    </td>
-                    <td class='bold' width='25%'>
-                        Poziom lęku: {{$listMood[$i]["level_anxiety"]}}
-                    </td>
-                    <td class='bold' width='25%' colspan="2">
-                         Poziom zdenerwowania: {{$listMood[$i]["level_nervousness"]}}
-                    </td>
-                    <td class='bold' width='25%' colspan="2">
-                        Poziom pobudzenia: {{$listMood[$i]["level_stimulation"]}}
-                    </td>
-
-                </tr>
-                @if ($listMood[$i]["epizodes_psychotik"] != 0)
-                <tr class='idMood{{$i}}'>
-                    
-                    <td class='boldWarning' width='25%' colspan="6">
-                         Ilość epizodów psychotycznych = {{$listMood[$i]["epizodes_psychotik"]}} 
-                    </td>
-                    
-                    
-                </tr>
- 
-                @endif
-                   <tr class='idMood{{$i}}'>
-                    <td>
-                        @if ($listMood[$i]["drugs"] != "")
-                        <button onclick="showDrugs('{{url('/Drugs/show')}}',{{$i}},{{$listMood[$i]["id"]}})" class="btn btn-primary">Pokaż leki</button>
-                        @else
-                        <button class="btn btn-danger" disabled>Nie było leków</button>
-                        @endif
-                        
-                    </td>
-                    <td>
-     
-                        <button onclick="addDrugs('{{ url('/Drugs/addDrugs')}}',{{$i}},{{$listMood[$i]["id"]}})" class="btn btn-primary" id="addDrugsButton{{$i}}">Dodaj leki</button>
-                       
-                    </td>
-                    <td>
-     
-                        <button onclick="editMood('{{url('/Mood/edit')}}',{{$listMood[$i]["id"]}},{{$i}})" class="btn btn-primary">Edytuj nastrój</button>
-                       
-                    </td>
-                    <td>
-     
-                        <button onclick="deleteMood('{{url('/Mood/delete')}}',{{$listMood[$i]["id"]}},{{$i}})" class="btn btn-danger">Usuń nastrój</button>
-                       
-                    </td>
-                    <td>
-     
-                        <button onclick="addDescription('{{url('/Mood/addDescription')}}',{{$listMood[$i]["id"]}},{{$i}})" class="btn btn-primary">Edytuj dodaj opis</button>
-                       
-                    </td>
-                    <td>
-                        @if ($listMood[$i]["what_work"] == true)
-                        <button onclick="showDescription('{{url('/Mood/showDescription')}}',{{$listMood[$i]["id"]}},{{$i}})" class="btn btn-primary">Pokaż opis</button>
-                        @else
-                        <button  class="btn btn-danger" disabled>Nie było opisu</button>
-                        @endif
-                    </td>
-                </tr>
-                
-                <tr class='idMood{{$i}}'>
-                    <td colspan='6'>
-                        <div id='showDescription{{$i}}' class='center'></div>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <div id="showFieldText{{$i}}" class='center' style='width: 50%;'></div>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    
-                    <td colspan="6">
-                        <div id="viewEditMood{{$i}}"></div>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    
-                    <td colspan="6">
-                        <form id='addDrugsssss{{$i}}' method='get'>
-                        <div class="drugss{{$i}} center " style='width: 80%;'>
-                            
-                                
-                                
-                        </div>                            
-                        </form>
-
-                    </td>
-                    
-                    
-                </tr>
-                <tr>
-                    
-                    <td colspan="6">
-                        
-                        <div class="drugsss{{$i}} center"></div>
-                    </td>
-                    
-                    
-                </tr>
-                <tr>
-                    
-                    <td colspan='6'>
-                        <div id='addDrugsResult{{$i}}' class='center'></div>
-                        
-                    </td>
-                </tr>
-
-                
+                </td>
             @else
-                 <tr class='idMood{{$i}}'>
+                <td colspan="7"  class="level titlemood"  >
 
-                     <td colspan="6">
-                        <div class='levelsleep' style='width:{{$listPercent[$i]["percent"]}}%;'>
-                        &nbsp;
-                        </div>
-                    </td>
-                </tr> 
-                <tr class='idMood{{$i}}'>
-                    <td class='boldSleep' width='25%' colspan="1">
-                         {{$listMood[$i]["date_start"]}} - 
-                    </td>
-                    <td class='boldSleep' width='25%' colspan="1">
-                        {{$listMood[$i]["date_end"]}}
-                    </td>
-                    <td class='boldSleep' width='50%' colspan="3">
-                        Czar trwania:  &nbsp;&nbsp;&nbsp;&nbsp;   {{$listPercent[$i]["second"]}}
-                    </td>
-                    
-                </tr>
-                <tr class='idMood{{$i}}'>
-                    <td class='boldSleep' width='25%' colspan="5">
-                        <button onclick="deleteSleep('{{ url('/Sleep/delete')}}',{{$listMood[$i]["id"]}},{{$i}})" class='btn btn-danger'>usuń sen</button>
-                    </td>
-                    
-                    
-                </tr>
-                @if ($listMood[$i]["epizodes_psychotik"] != 0)
-                <tr class='idMood{{$i}}'>
-                    
-                    <td class='boldSleep' width='25%' colspan="5">
-                         Ilośc wybudzeń {{$listMood[$i]["epizodes_psychotik"]}} 
-                    </td>
-                    
-                    
-                </tr>
-                @endif
+                    <div class="titlemood{{$list["color_mood"]}}" style="width: {{$listPercent[$i-1]["percent"]}}%;"> <span style="color: #7e1d38; font-size: 21px;">{{$i}}</span></div>
+
+                </td>
             @endif
-            <tr>
-                <td colspan='6'>
-                    
-                    <div id='showDrugss{{$i}}' class='showDrugs'></div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    
-                </td>
-            </tr>
-            <tr class='idMood{{$i}}'>
-                <td colspan="6">
-                   
-                </td>
-            </tr>
+        </tr>
+    <tr>
+        <td colspan="7" class="idMood{{$i-1}}">
+
+            <table width=" 100%">
+                <tr>
+            <td  width="10%" class="center">
+                {{substr($list["date_start"],11,5)}}
+            </td>
+            <td  width="10%" class="center">
+                {{substr($list["date_end"],11,5)}}
+            </td>
+                    @if ($list["type"] != 0)
+        <td  width="10%" class="center" rowspan="2">
+            {{$listPercent[$i-1]["level_mood"]}}
+        </td>
+            <td  width="10%" class="center" rowspan="2">
+                {{$listPercent[$i-1]["level_anxiety"]}}
+            </td>
+            <td  width="10%" class="center" rowspan="2">
+                {{$listPercent[$i-1]["level_nervousness"]}}
+            </td>
+            <td  width="10%" class="center" rowspan="2">
+
+                {{$listPercent[$i-1]["level_stimulation"]}}
+            </td>
+                        @else
+                        <td  width="10%" class="center" rowspan="2">
+
+                        </td>
+                        <td  width="10%" class="center" rowspan="2">
+
+                        </td>
+                        <td  width="10%" class="center" rowspan="2">
+
+                        </td>
+                        <td  width="10%" class="center" rowspan="2">
+
+
+                        </td>
+                    @endif
+                    @if ($listPercent[$i-1]["epizodes_psychotik"] != null and $list["type"] == 0)
+                        <td  width="15%" class="centerbold boldWarning" rowspan="2">
+
+                                Ilość wybudzeń {{$listPercent[$i-1]["epizodes_psychotik"]}}
+
+                        </td>
+                    @endif
+                    @if ($listPercent[$i-1]["epizodes_psychotik"] != null and $list["type"] == 1)
+                            <td  width="15%" class="centerbold boldWarning" rowspan="2">
+
+                                    Ilość epizodów psychotycznych {{$listPercent[$i-1]["epizodes_psychotik"]}}
+
+                            </td>
+
+                    @else
+                        <td  width="15%" class="center" rowspan="2">
+
+                               Brak
+
+                        </td>
+                    @endif
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="center" rowspan="2">
+                        {{$listPercent[$i-1]["second"]}}
+                    </td>
+
+
+
+    </tr>
+                </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="7"  class="idMood{{$i-1}}">
+            @if ( ($list["type"] == 0))
+                <button onclick="deleteSleep('{{ url('/Sleep/delete')}}',{{$listMood[$i-1]["id"]}},{{$i-1}})" class='btn btn-danger'>usuń sen</button>
+            @else
+                <div class="buttonMood">
+                    @if ($listPercent[$i-1]["drugs"] != "")
+                        <button onclick="showDrugs('{{url('/Drugs/show')}}',{{$i-1}},{{$listPercent[$i-1]["id"]}})" class="btn btn-primary">Pokaż leki</button>
+                    @else
+                        <button class="btn btn-danger" disabled>Nie było leków</button>
+                    @endif
+                        @if ($listPercent[$i-1]["what_work"] == true)
+                            <button onclick="showDescription('{{url('/Mood/showDescription')}}',{{$listPercent[$i-1]["id"]}},{{$i-1}})" class="btn btn-primary">Pokaż opis</button>
+                        @else
+                            <button  class="btn btn-danger" disabled>Nie było opisu</button>
+                        @endif
+                        <button id="addDrugsButton{{$i-1}}" onclick="addDrugs('{{ url('/Drugs/addDrugs')}}',{{$i-1}},{{$listMood[$i-1]["id"]}})" class="btn btn-primary" id="addDrugsButton{{$i}}">Dodaj leki</button>
+                        <button onclick="editMood('{{url('/Mood/edit')}}',{{$listMood[$i-1]["id"]}},{{$i-1}})" class="btn btn-primary">Edytuj nastrój</button>
+                        <button onclick="deleteMood('{{url('/Mood/delete')}}',{{$listMood[$i-1]["id"]}},{{$i-1}})" class="btn btn-danger">Usuń nastrój</button>
+                        <button onclick="addDescription('{{url('/Mood/addDescription')}}',{{$listMood[$i-1]["id"]}},{{$i-1}})" class="btn btn-primary">Edytuj dodaj opis</button>
+                </div>
+            @endif
+
+
+
+
+            <br>
+                <div id="showDrugss{{$i-1}}"></div>
+            <div id="showDescription{{$i-1}}"></div>
+                <div id="showFieldText{{$i-1}}" class='center' style='width: 50%;'></div>
+                <div id="viewEditMood{{$i-1}}"></div>
+
+                    <form id='addDrugsssss{{$i-1}}' method='get'>
+                        <div class="drugss{{$i-1}} center " style='width: 80%;'>
+
+
+
+                        </div>
+                    </form>
+                <div class="drugsss{{$i-1}} center"></div>
+
+
+            <table width="60%" align="center">
+                <tr>
+                    <td colspan="6">
+            <div id="addDrugsResult{{$i-1}}"></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+
+
+
+    <tr>
+        <td colspan="7">
+            <hr class="mood">
+        </td>
+    </tr>
+        @php
+            $i++;
+        @endphp
+
+    @endforeach
 </table>
-                        </div> 
-        <br>
-        @endfor
-    
-    </div>
-</div>

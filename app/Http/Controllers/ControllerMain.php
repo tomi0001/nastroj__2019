@@ -39,7 +39,6 @@ class ControllerMain extends BaseController
             $text_month = $kalendar->return_month_text($kalendar->month);
             $next_year  = $kalendar->return_next_year($kalendar->year);
             $back_year  = $kalendar->return_back_year($kalendar->year);
-            
             return View("Main.Main") ->with("month",$kalendar->month)
                     ->with("year",$kalendar->year)
                     ->with("day",$kalendar->day)
@@ -68,7 +67,7 @@ class ControllerMain extends BaseController
                     ->with("day_week",$kalendar->day_week);
         }
         else {
-            return Redirect("/User/Login")->with("error","Wylogowałeś się");
+            return Redirect("/User/Login");
         }
     }
     public function editMood() {

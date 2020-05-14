@@ -195,8 +195,28 @@ function deleteWorld() {
     //alert("ss");
 }
 function addWorld() {
-    //$("#what_work").append("<tr><td class='center'><input type='text' name='what_work3[]' class='form-control typeMood'></td></tr>");
+    //alert("ss");
+    $("#what_work").append("<input type=\'text\' name=\'what_work3[]\' class=\'form-control typeMood\'>");
+    
+    //$("#what_work").append($("#what_work4").html());
 }
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+$(document).ready(function() {
+ 
+	$('#add').click(function(){
+		      $('#what_work .element:first').clone().appendTo($('#element')).find('input').val('');
+		      return false;
+		   });
+ 
+});
+ */
 function changeMood() {
     if ($("#type").val() == "sleep") {
         $("#sort").html("<option value='date'>Według daty</option><option value='hour'>Według Godziny</option><option value='longMood'>Według długości trwania snu</option>")

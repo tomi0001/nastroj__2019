@@ -50,7 +50,9 @@
     </div>
 </div>
 
-
+<div id="login" class="center">
+    <a href="{{ url('/User/Register') }}"><button class="btn btn-success">Nie masz konta zarejestruj się</button></a>
+</div>
 <div id="login">
     <form action="{{ url('/UserDr/Login_action')}}" method="post">
     <table class="table login">

@@ -357,6 +357,7 @@ class search  {
             if (isset(Input::get("what_work3")[$i]) and Input::get("what_work3")[$i] != "") {
                 
                 $stringSearch = $Common->charset_utf_fix2(Input::get("what_work3")[$i]);
+                
                 $this->qestion->where("what_work","LIKE","%" . $stringSearch . "%");
             }
         }

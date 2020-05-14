@@ -190,61 +190,63 @@
             </td>
             
             <td class="center">
-                <table id="what_work" width="100%">
-                   
-                    <tr>
-                        
-                        <td>
-                <input type="text" name="what_work3[]" class="form-control typeMood">
-                    </td>
-                           <td>
-                 <a onclick="addWorld()" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-plus"></span>  
-        </a>
-            </td>
-          
-                    </tr>
-                    <tr>
-                        
-                        <td>
-                <input type="text" name="what_work3[]" class="form-control typeMood">
-                    </td>
-                           <td>
-                 <a onclick="addWorld()" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-plus"></span>  
-        </a>
-            </td>
-          
-                    </tr>
-                    <tr>
-                        
-                        <td>
-                <input type="text" name="what_work3[]" class="form-control typeMood">
-                    </td>
-                           <td>
-                 <a onclick="addWorld()" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-plus"></span>  
-        </a>
-            </td>
-          
-                    </tr>
-                    <tr>
-                        
-                        <td>
-                <input type="text" name="what_work3[]" class="form-control typeMood">
-                    </td>
-                           <td>
-                 <a onclick="addWorld()" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-plus"></span>  
-        </a>
-            </td>
-          
-                    </tr>
-                </table>
+                    <table  width="100%" id="what_work">
+                           <tbody >
+                        <tr>
+
+                            <td>
+                    <input type="text" name="what_work3[]" class="form-control typeMood">
+                        </td>
+                               <td>
+                     <a onclick="addWorld()" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-plus"></span>  
+            </a>
+                </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>
+                    <input type="text" name="what_work3[]" class="form-control typeMood">
+                        </td>
+                               <td>
+                     <a onclick="addWorld()" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-plus"></span>  
+            </a>
+                </td>
+
+                        </tr>
+                        <tr>
+
+                            <td class="element">
+                    <input type="text" name="what_work3[]" class="form-control typeMood">
+                        </td>
+                               <td>
+                     <a onclick="addWorld()" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-plus"></span>  
+            </a>
+                </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>
+                    <input type="text" name="what_work3[]" class="form-control typeMood">
+                        </td>
+                               <td>
+                     <a onclick="addWorld()" id="add" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-plus"></span>  
+            </a>
+                </td>
+
+                        </tr>
+
+                           </tbody>
+                    </table>
                 
             </td>
             
-            
+     
      
         </tr>
         <tr>

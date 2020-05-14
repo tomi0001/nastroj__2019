@@ -78,6 +78,7 @@ class ControllerMood extends BaseController
     public function addDrugs() {
         if ( (Auth::check()) ) {
             $Mood = new Mood;
+
             if (count(Input::get("name")) != 0) {
                 $Mood->setSecondMood(Input::get("idMood"));
                 $result = $Mood->checkDrugs(Input::get("name"),Input::get("dose"),Input::get("date"),Input::get("time"));
