@@ -172,7 +172,12 @@ class search  {
             $this->setDrugs();
         }
         $this->setDate();
-        $this->sort($page);
+        if (Input::get("moodForDay") != "") {
+            $this->sortForDay($page);
+        }
+        else {
+            $this->sort($page);
+        }
         
         
         $this->list = $this->qestion->Paginate(15);
@@ -189,7 +194,7 @@ class search  {
         $this->qestion->selectRaw("hour(date_start) as hour");
         $this->qestion->selectRaw("date_start as date_start");
         $this->qestion->selectRaw("date_end as date_end");
-
+        
         $this->qestion->selectRaw("sleeps.id as id");
 
         
@@ -275,6 +280,30 @@ class search  {
             $this->qestion->orderBy("divi","DESC");
         }
         $this->qestion->offset($page);
+    }
+    private function sortForDay($page) {
+        if (Input::get("sort") == "date") {
+            $this->qestion->orderBy("date_start","DESC");
+        }
+        else if (Input::get("sort") == "hour") {
+            $this->qestion->orderBy("hour","DESC");
+        }
+        else if (Input::get("sort") == "mood") {
+            $this->qestion->orderBy("nas","DESC");
+        }
+        else if (Input::get("sort") == "anxiety") {
+            $this->qestion->orderBy("nas2","DESC");
+        }
+        else if (Input::get("sort") == "nervousness") {
+            $this->qestion->orderBy("nas3","DESC");
+        }
+        else if (Input::get("sort") == "stimulation") {
+            $this->qestion->orderBy("nas4","DESC");
+        }
+        else {
+            $this->qestion->orderBy("divi","DESC");
+        }
+        $this->qestion->offset($page);        
     }
     private function setDate() {
        
