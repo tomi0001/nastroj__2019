@@ -46,6 +46,7 @@
             <file>file:/var/www/html/nastroj_2019/resources/views/Layout/Main.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/AjaxDr/showAverage.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/public/css/app.css</file>
+            <file>file:/var/www/html/nastroj_2019/resources/views/Main/addSleep.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Layout/kalendar.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/showAverage.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Dr/Search/AI.blade.php</file>
@@ -54,6 +55,7 @@
             <file>file:/var/www/html/nastroj_2019/app/Http/Services/search.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Layout/kalendar.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/app/Http/Controllers/ControllerDrMain.php</file>
+            <file>file:/var/www/html/nastroj_2019/app/Hash.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Search/action.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Ajax/description.blade.php</file>
             <file>file:/var/www/html/nastroj_2019/resources/views/Main/showMood.blade.php</file>

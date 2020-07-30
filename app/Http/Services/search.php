@@ -149,7 +149,7 @@ class search  {
             $this->qestion->selectRaw("round(sum(TIMESTAMPDIFF (SECOND, date_start , date_end)  * level_stimulation) / "
                    . "sum(TIMESTAMPDIFF(second,date_start,date_end)),2) as nas4");
         }
-        //$this->qestion->select(DB::Raw("CASE WHEN forwarding_drugs.id_mood = '' THEN   '0'    END  "));
+        //$this->qestion->selectRaw("CASE WHEN forwarding_drugs.id_mood = '' THEN    '0'    END  '1'  ");
         $this->qestion->leftjoin("forwarding_drugs","forwarding_drugs.id_mood","moods.id");
         if (Input::get("drugs") != "") {
             $this->qestion->leftjoin("drugs","drugs.id","forwarding_drugs.id_drugs");
@@ -334,7 +334,7 @@ class search  {
     }
     private function setGroup2() {
         //$this->qestion->groupBy("CASE WHEN `forwarding_drugs`.`id_mood` = null THEN '0'  else `forwarding_drugs`.`id_mood` = `forwarding_drugs`.`id_mood` END");
-        //$this->qestion->groupBy("moods.id");
+        $this->qestion->groupBy("moods.id");
         //$this->qestion->havingRaw("CASE WHEN count(forwarding_drugs.id_mood) = 0 THEN  1  else forwarding_drugs.id_mood  END ");
     }
     private function setGroup() {

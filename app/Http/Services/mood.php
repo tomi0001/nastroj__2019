@@ -534,9 +534,9 @@ class mood extends Drugs {
         $Moods = new Moods;
         $Sleep = new Sleep;
         $checkMood = $Moods->where("date_end",">=",$dateStart)
-                ->where("date_start","<=",$dateEnd)->first();
+                ->where("date_start","<=",$dateEnd)->where("id_users",Auth::User()->id)->first();
         $checkSleep = $Sleep->where("date_end",">=",$dateStart)
-                ->where("date_start","<=",$dateEnd)->first();
+                ->where("date_start","<=",$dateEnd)->where("id_users",Auth::User()->id)->first();
         if (empty($checkMood) and empty($checkSleep)) {
             return true;
         }

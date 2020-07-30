@@ -88,13 +88,13 @@ class AIMood extends mood {
                 return 0;
             }
             return [round($sumMood / $j,2),
-                round($this->standardDeviation((($days[0]) )) ,2)
+                round($this->sortMood((($days[0]) )) ,2)
                 ,round($sumAnxiety / $j,2)
-                ,round($this->standardDeviation((($days[1]) )),2)
+                ,round($this->sortMood((($days[1]) )),2)
                 ,round($sumNer / $j,2)
-                ,round($this->standardDeviation((($days[2]) )),2)
+                ,round($this->sortMood((($days[2]) )),2)
                 ,round($sumStimu / $j,2)
-                ,round($this->standardDeviation((($days[3]) )),2),
+                ,round($this->sortMood((($days[3]) )),2),
                 $minDay,$maxDay];
             
         }
@@ -258,16 +258,16 @@ class AIMood extends mood {
             //return 200;
         }
                  if ($type == "anxiety") {
-        array_push($this->tableAnxiety,round(($this->standardDeviation($harmonyAnxiety) ),2));
+        array_push($this->tableAnxiety,round(($this->sortMood($harmonyAnxiety) ),2));
          }
          else if ($type=="ner") {
-        array_push($this->tableNer,round(($this->standardDeviation($harmonyNer) ),2));
+        array_push($this->tableNer,round(($this->sortMood($harmonyNer) ),2));
          }
          else if ($type=="stimulation") {
-        array_push($this->tableStimu,round(($this->standardDeviation($harmonyStimu) ),2));
+        array_push($this->tableStimu,round(($this->sortMood($harmonyStimu) ),2));
          }
          else {
-        array_push($this->tableMood,round(($this->standardDeviation($harmonyMood) ),2));
+        array_push($this->tableMood,round(($this->sortMood($harmonyMood) ),2));
         }
 
 
@@ -337,18 +337,21 @@ class AIMood extends mood {
              
             //else {
            
-                $tmp = ((((($list[$i]) ) / 20)  * 100) -  ((($list[$i+1] ) / 20) * 100 ));
+                $tmp = ((((($list[$i]) )) ) -  ((($list[$i+1] ) )  ));
             //}
             if ($tmp < 0) {
                 $tmp = -$tmp;
             }
-            $tmp2 += $tmp;
+            $tmp2 += ($tmp  * 5);
         }
-        $average = array_sum($list)/count($list);
+        $average = array_sum($list) / 5;
         if ($average == 0) {
             $average = 0.5;
         }
-        return  abs(((($tmp2 / count($list))) ) / $average);
+        if ((((($tmp2 / count($list))) ) ) < 0) {
+            return -(((($tmp2 / count($list))) ));
+        }
+        return  ((($tmp2 / count($list))) );
     }
     
     public function standardDeviation($list) {
